@@ -25,13 +25,14 @@ abn
 
 rails generate model Business user:references name:string abn:string
 
-### Employee
+### Employee (Aidan)
 id
 business_id
 first_name
 last_name
+full_name()
 
-### EmploymentTerm
+### EmploymentTerm (Aidan)
 id
 employee_id
 start_date
@@ -40,11 +41,12 @@ department_id
 position
 salary
 
-### Department
+### Department (Aidan)
 id
+business_id
 name
 
-### BusinessAddress
+### BusinessAddress (Aidan)
 id
 business_id
 unit
@@ -55,7 +57,7 @@ post_code
 primary?
 mailing_address?
 
-### EmployeeAddress
+### EmployeeAddress (Aidan)
 id
 employee_id
 unit
@@ -66,14 +68,14 @@ post_code
 primary?
 mailing_address?
 
-### Phone
+### Phone (Aidan polymorphic)
 id
 phoneable
 number
 mobile?
 primary?
 
-### Email
+### Email. (Steve polymorphic)
 id
 emailable
 email
