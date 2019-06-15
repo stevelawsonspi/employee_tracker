@@ -4,7 +4,7 @@ class CreatePhoneNumbers < ActiveRecord::Migration[5.2]
       t.string :number
       t.boolean :mobile
       t.boolean :primary
-      t.references :phone_numberable, polymorphic: true
+      t.references :phone_numberable, polymorphic: true, index: { name: 'phone_numbers_phoneable' }
 
       t.timestamps
     end
