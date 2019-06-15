@@ -1,5 +1,6 @@
 class Business < ApplicationRecord
   belongs_to :user
-  has_many :employees
-  has_many :phones, as :phoneable
+  has_many   :employees
+  has_many   :phones, as: :phoneable
+  has_many   :emails, as: :emailable
 end

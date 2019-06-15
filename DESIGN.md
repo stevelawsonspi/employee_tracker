@@ -97,3 +97,7 @@ id
 emailable
 email
 primary?
+
+rails g model Email email:string primary:boolean emailable:references{polymorphic}
+
+
