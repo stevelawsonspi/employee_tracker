@@ -90,6 +90,8 @@ number
 mobile?
 primary?
 
+rails g model Phone number mobile:boolean primary:boolean phonable:references{polymorphic}
+
 ### Email. (Steve polymorphic)
 id
 emailable
