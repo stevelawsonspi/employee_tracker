@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_030843) do
+ActiveRecord::Schema.define(version: 2019_06_15_035837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2019_06_15_030843) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_departments_on_business_id"
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.string "email"
+    t.boolean "primary"
+    t.string "emailable_type"
+    t.bigint "emailable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emailable_type", "emailable_id"], name: "index_emails_on_emailable_type_and_emailable_id"
   end
 
   create_table "employee_addresses", force: :cascade do |t|
@@ -80,15 +90,15 @@ ActiveRecord::Schema.define(version: 2019_06_15_030843) do
     t.index ["employee_id"], name: "index_employment_periods_on_employee_id"
   end
 
-  create_table "phones", force: :cascade do |t|
+  create_table "phone_numbers", force: :cascade do |t|
     t.string "number"
     t.boolean "mobile"
     t.boolean "primary"
-    t.string "phonable_type"
-    t.bigint "phonable_id"
+    t.string "phone_numberable_type"
+    t.bigint "phone_numberable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["phonable_type", "phonable_id"], name: "index_phones_on_phonable_type_and_phonable_id"
+    t.index ["phone_numberable_type", "phone_numberable_id"], name: "phone_numbers_phoneable"
   end
 
   create_table "users", force: :cascade do |t|
