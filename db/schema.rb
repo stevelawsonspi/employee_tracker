@@ -90,17 +90,6 @@ ActiveRecord::Schema.define(version: 2019_06_15_035837) do
     t.index ["employee_id"], name: "index_employment_periods_on_employee_id"
   end
 
-  create_table "phone_numbers", force: :cascade do |t|
-    t.string "number"
-    t.boolean "mobile"
-    t.boolean "primary"
-    t.string "phone_numberable_type"
-    t.bigint "phone_numberable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["phone_numberable_type", "phone_numberable_id"], name: "phone_numbers_phoneable"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
