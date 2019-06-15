@@ -26,11 +26,14 @@ abn
 rails generate model Business user:references name:string abn:string
 
 ### Employee (Aidan)
+
 id
 business_id
 first_name
 last_name
 full_name()
+
+rails g model employee business:references first_name last_name 
 
 ### EmploymentTerm (Aidan)
 id
@@ -41,10 +44,15 @@ department_id
 position
 salary
 
+rails g model employmentperiod employee:references department:references start_date:date end_date:date position salary
+
 ### Department (Aidan)
+
 id
 business_id
 name
+
+rails g model department business:references name
 
 ### BusinessAddress (Aidan)
 id
@@ -54,8 +62,12 @@ street
 suburb
 state
 post_code
+
 primary?
 mailing_address?
+
+rails generate model businessaddress business:references unit street suburb state post_code
+
 
 ### EmployeeAddress (Aidan)
 id
@@ -65,8 +77,11 @@ street
 suburb
 state
 post_code
-primary?
-mailing_address?
+
+primary
+mailing_address
+
+rails g model employeeaddress employee:references unit street suburb state post_code primary:boolean mailing_address:boolean 
 
 ### Phone (Aidan polymorphic)
 id
