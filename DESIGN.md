@@ -35,7 +35,7 @@ full_name()
 
 rails g model employee business:references first_name last_name 
 
-### EmploymentTerm (Aidan)
+### EmploymentPeriod (Aidan)
 id
 employee_id
 start_date

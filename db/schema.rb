@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_035843) do
+ActiveRecord::Schema.define(version: 2019_06_19_083314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 2019_06_15_035843) do
     t.date "start_date"
     t.date "end_date"
     t.string "position"
-    t.string "salary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "salary"
     t.index ["department_id"], name: "index_employment_periods_on_department_id"
     t.index ["employee_id"], name: "index_employment_periods_on_employee_id"
   end
