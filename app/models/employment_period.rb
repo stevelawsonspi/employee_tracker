@@ -3,8 +3,8 @@ class EmploymentPeriod < ApplicationRecord
   belongs_to :department
   
   validates :start_date, presence: true
-  validates :postion,    presence: true
-  validates :salary,     presence: true, numericality: true
+  validates :position,   presence: true
+  validates :salary,     presence: true, numericality: { greater_than: 0, only_integer: true }
   validate  :validate_start_date
   validate  :validate_end_date
 
@@ -13,7 +13,7 @@ class EmploymentPeriod < ApplicationRecord
   def validate_start_date
     # check valid date
     # check does not overlap
-    errors[:start_date] << 'overlaps an existing Employment Period'
+    # errors[:start_date] << 'overlaps an existing Employment Period'
   end
   
   def validate_end_date
