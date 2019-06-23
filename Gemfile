@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'devise'
+gem 'validates_timeliness'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
