@@ -8,7 +8,7 @@ describe Department, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
 
-    it "likes valid data" dos
+    it "likes valid data" do
       expect(subject.valid?).to be true
     end
   end
