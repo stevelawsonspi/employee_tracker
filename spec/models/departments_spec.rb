@@ -8,13 +8,7 @@ describe Department, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
 
-    it "likes valid data" do
-      Department.all.each do |d|
-        warn "#{d.id}, #{d.business_id}, #{d.name}"
-      end
-      
-      subject.valid?
-      warn "#{subject.errors.full_messages}"
+    it "likes valid data" dos
       expect(subject.valid?).to be true
     end
   end
