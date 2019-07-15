@@ -11,6 +11,7 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.json
   def show
+    @disable_fields = true
   end
 
   # GET /businesses/new
