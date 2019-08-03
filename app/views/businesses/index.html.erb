@@ -1,10 +1,29 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="notice" class="alert alert-success">
+    <%= notice %>
+    <button class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% end %>
+<br>
+<h3>All Businesses</h3>
+<div class='form-group float-right'>
+  <%= form_tag businesses_path, method: 'get', class: 'form-inline' do %>
+    <p>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search for...', class: 'form-control' %>
+      <%= button_tag type: "submit", class: 'btn search_button' do %>
+        <%= mdi_svg('magnify') %>
+      <% end %>
+      <%= link_to businesses_path, class: 'btn search_button' do %>
+        <%= mdi_svg('close-circle') %>
+      <% end %>
+    </p>
+  <% end %>
+</div>
 
-<h3 class="text-center">Businesses</h3>
-
-<table class="table table-hover table-sm table-striped">
+<table class="table table-hover table-sm">
   <thead>
     <tr>
+    <th>User</th>
 	  <th>Name</th>
 	  <th>ABN</th>
     <th></th>
@@ -14,17 +33,18 @@
   <tbody>
     <% @businesses.each do |business| %>
       <tr>
-		    <td><%= link_to business.name, business_path(business) %></td>
+        <td><%= business.user.email %></td>
+		    <td><%= link_to business.name, business_path(business) %> <%= select_left_link use_business_path(business) %></td>
 		    <td><%= business.abn %></td>
         <td>
           <%= edit_link   edit_business_path(business) %>
-          <%= delete_link business %>
+          <%= delete_link business, confirm_message: "Are you sure you want to delete #{business.name}?" %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 <br>
 
 <%= link_to 'New Business', new_business_path, class: 'btn btn-primary' %>

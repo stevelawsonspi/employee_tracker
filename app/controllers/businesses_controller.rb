@@ -1,11 +1,20 @@
 class BusinessesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_business, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :must_be_admin!
+  before_action :set_business, only: [:show, :edit, :update, :destroy, :use]
 
   # GET /businesses
   # GET /businesses.json
   def index
-    @businesses = Business.all
+    table_page_size = 20
+    if params[:search].present?
+      @pagy, @businesses = pagy(
+        Businesss.joins(:user).order(:name)
+          .where("LOWER(email) LIKE :search OR LOWER(name) LIKE :search OR LOWER(abn) LIKE :search", {search: "%#{params[:search].downcase}%"}),
+        items: table_page_size
+      )
+    else
+      @pagy, @businesses = pagy(Business.order(:name), items: table_page_size)
+    end
   end
 
   # GET /businesses/1
@@ -27,29 +36,20 @@ class BusinessesController < ApplicationController
   # POST /businesses.json
   def create
     @business = Business.new(business_params)
-    @business.user_id = current_user.id
-    respond_to do |format|
-      if @business.save
-        format.html { redirect_to businesses_path, notice: 'Business was successfully created.' }
-        format.json { render :show, status: :created, location: @business }
-      else
-        format.html { render :new }
-        format.json { render json: @business.errors, status: :unprocessable_entity }
-      end
+    if @business.save
+      redirect_to businesses_path, notice: "#{@business.name} was successfully created."
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /businesses/1
   # PATCH/PUT /businesses/1.json
   def update
-    respond_to do |format|
-      if @business.update(business_params)
-        format.html { redirect_to @business, notice: 'Business was successfully updated.' }
-        format.json { render :show, status: :ok, location: @business }
-      else
-        format.html { render :edit }
-        format.json { render json: @business.errors, status: :unprocessable_entity }
-      end
+    if @business.update(business_params)
+      redirect_to businesses_path, notice: "#{@business.name} was successfully updated."
+    else
+      render :edit
     end
   end
 
@@ -57,13 +57,20 @@ class BusinessesController < ApplicationController
   # DELETE /businesses/1.json
   def destroy
     @business.destroy
-    respond_to do |format|
-      format.html { redirect_to businesses_url, notice: 'Business was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to businesses_url, notice: "#{@business.name} was successfully destroyed."
+  end
+
+  def use
+    set_current_business(@business.id)
+    redirect_to businesses_url, notice: "#{@business.name} is now the default."
   end
 
   private
+  
+    def must_be_admin!
+      redirect_to user_businesses_path if !current_user.admin?
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_business
       @business = Business.find(params[:id])

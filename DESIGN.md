@@ -16,6 +16,7 @@ Store
 ### User
 id
 email
+admin
 
 ### Business
 id
@@ -102,12 +103,7 @@ rails g model Email email:string primary:boolean emailable:references{polymorphi
 
 
 
-# Aidan
-factory for phone_number
-phone spec checks
-  validates :number,  presence:  true                      <- check blank is error, not blank is ok  
-  validates :primary, inclusion: { in: [true, false] }    <- check nil is error, true and false are ok  
-  validates :mobile,  inclusion: { in: [true, false] }    <- check nil is error, true and false are ok
 
+https://github.com/plataformatec/devise/wiki/How-To:-Sign-in-as-another-user-if-you-are-an-admin
 
 

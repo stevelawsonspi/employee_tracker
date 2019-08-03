@@ -1,6 +1,7 @@
 <%= simple_form_for(business, wrapper: :horizontal_form) do |form| %>
-  <%= form.input :name, disabled: show_action?  %>
-  <%= form.input :abn,  disabled: show_action?, label: "ABN" %>
+  <%= form.association :user, disabled: show_action?, label_method: :email, value_method: :id, include_blank: false %>
+  <%= form.input       :name, disabled: show_action?  %>
+  <%= form.input       :abn,  disabled: show_action?, label: "ABN" %>
   <div class="form-group row mb-0">
     <div class="mx-auto">
       <% if !show_action? %>
