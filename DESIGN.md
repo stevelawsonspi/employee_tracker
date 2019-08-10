@@ -63,12 +63,10 @@ street
 suburb
 state
 post_code
-
-primary?
-mailing_address?
+primary
+mailing_address
 
 rails generate model businessaddress business:references unit street suburb state post_code
-
 
 ### EmployeeAddress (Aidan)
 id
@@ -78,7 +76,6 @@ street
 suburb
 state
 post_code
-
 primary
 mailing_address
 
@@ -105,5 +102,20 @@ rails g model Email email:string primary:boolean emailable:references{polymorphi
 
 
 https://github.com/plataformatec/devise/wiki/How-To:-Sign-in-as-another-user-if-you-are-an-admin
+
+
+## TO-DO
+CRUD Departments
+CRUD Employees
+Add Phone Numbers to Business
+Add Emails to Business
+Add Phone Numbers to Employees
+Add Emails to Employees
+CRUB Employment Terms
+root to decide whether to go.
+
+
+
+
 
 

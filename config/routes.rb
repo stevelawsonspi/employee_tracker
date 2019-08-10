@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     member do
       get 'use'
     end
+    resources :departments
   end
   resources :user_businesses
 end

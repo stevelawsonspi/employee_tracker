@@ -1,14 +1,13 @@
 
-<%= simple_form_for(business, :url => user_business_path, wrapper: :horizontal_form) do |form| %>
+<%= simple_form_for(department, url: business_department_path(current_business), method: :post, wrapper: :horizontal_form) do |form| %>
   <%= form.input :name, disabled: show_action?  %>
-  <%= form.input :abn,  disabled: show_action?, label: "ABN" %>
   <div class="form-group row mb-0">
     <div class="mx-auto">
       <br>
       <% if !show_action? %>
         <%= form.button :submit, class: "btn-primary" %>
       <% end %>
-      <%= link_to 'Cancel', user_businesses_path, class: 'btn btn-outline-secondary' %>
+      <%= link_to 'Cancel', business_departments_path(current_business), class: 'btn btn-outline-secondary' %>
     </div>
   </div>
 <% end %>

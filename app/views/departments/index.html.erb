@@ -1,0 +1,33 @@
+<% if notice %>
+  <div id="notice" class="alert alert-success">
+    <%= notice %>
+    <button class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% end %>
+<br>
+<h3>Departments</h3>
+<br>
+<table class="table table-hover table-sm table-striped">
+  <thead>
+    <tr>
+	  <th>Name</th>
+    <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr>
+		    <td><%= link_to department.name, business_department_path(current_business, department) %></td>
+        <td>
+          <%= edit_link   edit_business_department_path(current_business, department) %>
+          <%= delete_link business_department_path(current_business, department), confirm_message: "Are you sure you want to delete #{department.name}?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Department', new_business_department_path(current_business), class: 'btn btn-primary' %>

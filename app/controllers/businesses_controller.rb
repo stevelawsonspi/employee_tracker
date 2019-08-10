@@ -8,7 +8,7 @@ class BusinessesController < ApplicationController
     table_page_size = 20
     if params[:search].present?
       @pagy, @businesses = pagy(
-        Businesss.joins(:user).order(:name)
+        Business.joins(:user).order(:name)
           .where("LOWER(email) LIKE :search OR LOWER(name) LIKE :search OR LOWER(abn) LIKE :search", {search: "%#{params[:search].downcase}%"}),
         items: table_page_size
       )

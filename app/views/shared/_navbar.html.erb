@@ -14,12 +14,14 @@
           <%= link_to 'Businesses', user_businesses_path, class: 'nav-link' %>
         </li>
       <% end %>
-      <li class="navbar-item">
-        <a href="#" class="nav-link">Employees</a>
-      </li>
-      <li class="navbar-item">
-        <a href="#" class="nav-link">Departments</a>
-      </li>
+      <% if current_business %>
+        <li class="navbar-item">
+          <a href="#" class="nav-link">Employees</a>
+        </li>
+        <li class="navbar-item">
+          <%= link_to 'Departments', business_departments_path(current_business), class: 'nav-link' %>
+        </li>
+      <% end %>
       <li class="navbar-item">
         <a href="#" class="nav-link">Settings</a>
       </li>
