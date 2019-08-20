@@ -105,7 +105,7 @@ https://github.com/plataformatec/devise/wiki/How-To:-Sign-in-as-another-user-if-
 
 
 ## TO-DO
-CRUD Departments
+Finish CRUD Departments
 CRUD Employees
 Add Phone Numbers to Business
 Add Emails to Business
@@ -113,7 +113,8 @@ Add Phone Numbers to Employees
 Add Emails to Employees
 CRUB Employment Terms
 root to decide whether to go.
-
+Add photos to Employees
+Add Logo to Businesses.
 
 
 

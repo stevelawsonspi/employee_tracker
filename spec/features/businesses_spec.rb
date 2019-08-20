@@ -6,10 +6,10 @@ RSpec.feature 'As an admin user, looking at all businesses', :js do
   before(:each) do
     @user       = create(:user)
     @admin_user = create(:user, admin: true)
-    @business   = create(:business, user_id: @user.id, name: 'Business111', abn: '123')
-    @business   = create(:business, user_id: @user.id, name: 'Business222', abn: '234')
-    @business   = create(:business, user_id: @user.id, name: 'Business333', abn: '345')
-    @business   = create(:business, user_id: @user.id, name: 'Business444', abn: '456')
+    @business1  = create(:business, user_id: @user.id, name: 'Business111', abn: '123')
+    @business2  = create(:business, user_id: @user.id, name: 'Business222', abn: '234')
+    @business3  = create(:business, user_id: @user.id, name: 'Business333', abn: '345')
+    @business4  = create(:business, user_id: @user.id, name: 'Business444', abn: '456')
   end
 
   scenario 'Redirects to User Businesses if not admin user' do
@@ -42,7 +42,7 @@ RSpec.feature 'As an admin user, looking at all businesses', :js do
     expect(page).to     have_content 'Business222'
   end
   
-  scenario 'Clear Search clears the search' do
+  scenario 'cancelling the search' do
     sign_in @admin_user
     visit   businesses_path
     fill_in 'search', with: '222'
