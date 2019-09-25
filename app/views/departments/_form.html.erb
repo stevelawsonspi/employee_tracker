@@ -1,5 +1,5 @@
 
-<%= simple_form_for(department, url: business_department_path(current_business), method: :post, wrapper: :horizontal_form) do |form| %>
+<%= simple_form_for(department, url: url, wrapper: :horizontal_form) do |form| %>
   <%= form.input :name, disabled: show_action?  %>
   <div class="form-group row mb-0">
     <div class="mx-auto">

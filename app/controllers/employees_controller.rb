@@ -1,12 +1,13 @@
-class DepartmentsController < ApplicationController
+class EmployeesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_department, only: [:show, :edit, :update, :destroy, :use]
+  before_action :set_employee, only: [:show, :edit, :update, :destroy, :use]
 
   def index
     table_page_size = 20
     if params[:search].present?
-      @pagy, @departments = pagy(
-        Department.order(:name).where("LOWER(name) LIKE :search", {search: "%#{params[:search].downcase}%"}),
+      @pagy, @employees = pagy(
+        Deparment.order(:name)
+          .where("LOWER(email) LIKE :search OR LOWER(name) LIKE :search OR LOWER(abn) LIKE :search", {search: "%#{params[:search].downcase}%"}),
         items: table_page_size
       )
     else
@@ -50,12 +51,11 @@ class DepartmentsController < ApplicationController
 
   private
 
-    def set_department
-      @department = Department.find(params[:id])
+    def set_employee
+      @department = Employee.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def department_params
-      params.require(:department).permit(:name)
+    def employee_params
+      params.require(:employee).permit(:department_id, :first_name, :last_name)
     end
 end
